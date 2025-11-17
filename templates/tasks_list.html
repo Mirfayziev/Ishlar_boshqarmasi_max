@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Topshiriqlar{% endblock %}
+
+{% block sidebar %}
+<ul>
+    <li><a href="{{ url_for('manager_dashboard') }}">Dashboard</a></li>
+    <li><a href="{{ url_for('tasks_list') }}">Topshiriqlar</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<h1>Topshiriqlar ro‘yxati</h1>
+
+<a href="{{ url_for('task_create') }}" class="btn">Yangi topshiriq</a>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nomi</th>
+        <th>Holat</th>
+        <th>Muddat</th>
+        <th>Biriktirilgan hodim</th>
+        <th>Holatni o‘zgartirish</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for t in tasks %}
+    <tr>
+        <td>{{ t.id }}</td>
+        <td>{{ t.title }}</td>
+        <td>{{ t.status }}</td>
+        <td>{{ t.deadline.date() if t.deadline else '-' }}</td>
+        <td>{{ t.assigned_to.full_name if t.assigned_to else '-' }}</td>
+        <td>
+            <form method="post" action="{{ url_for('task_update_status', task_id=t.id) }}">
+                <select name="status">
+                    <option value="yangi" {% if t.status=='yangi' %}selected{% endif %}>Yangi</option>
+                    <option value="jarayonda" {% if t.status=='jarayonda' %}selected{% endif %}>Jarayonda</option>
+                    <option value="bajarildi" {% if t.status=='bajarildi' %}selected{% endif %}>Bajarildi</option>
+                    <option value="rad_etildi" {% if t.status=='rad_etildi' %}selected{% endif %}>Rad etildi</option>
+                </select>
+                <button type="submit">Saqlash</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
