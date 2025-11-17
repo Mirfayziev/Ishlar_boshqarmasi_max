@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Admin paneli{% endblock %}
+
+{% block sidebar %}
+<ul>
+    <li><a href="{{ url_for('admin_dashboard') }}">Ko'rsatkichlar</a></li>
+    <li><a href="{{ url_for('admin_users') }}">Foydalanuvchilar</a></li>
+    <li><a href="{{ url_for('tasks_list') }}">Topshiriqlar</a></li>
+    <li><a href="{{ url_for('vehicles_list') }}">Avtotransport</a></li>
+    <li><a href="{{ url_for('contracts_list') }}">Shartnomalar</a></li>
+    <li><a href="{{ url_for('events_list') }}">Tadbirlar</a></li>
+    <li><a href="{{ url_for('outsourcings_list') }}">Outsourcing</a></li>
+    <li><a href="{{ url_for('solarpanels_list') }}">Quyosh panellari</a></li>
+    <li><a href="{{ url_for('requests_list') }}">Talabnomalar</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<h1>Admin paneli</h1>
+<div class="cards">
+    <div class="card"><div class="card-title">Foydalanuvchilar</div><div class="card-value">{{ user_count }}</div></div>
+    <div class="card"><div class="card-title">Topshiriqlar</div><div class="card-value">{{ task_count }}</div></div>
+    <div class="card"><div class="card-title">Avtotransport</div><div class="card-value">{{ vehicle_count }}</div></div>
+    <div class="card"><div class="card-title">Shartnomalar</div><div class="card-value">{{ contract_count }}</div></div>
+    <div class="card"><div class="card-title">Tadbirlar</div><div class="card-value">{{ event_count }}</div></div>
+    <div class="card"><div class="card-title">Outsourcing</div><div class="card-value">{{ outsourcing_count }}</div></div>
+    <div class="card"><div class="card-title">Quyosh panellari</div><div class="card-value">{{ solar_count }}</div></div>
+    <div class="card"><div class="card-title">Talabnomalar</div><div class="card-value">{{ request_count }}</div></div>
+</div>
+{% endblock %}
