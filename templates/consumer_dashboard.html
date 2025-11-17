@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Istemolchi paneli{% endblock %}
+
+{% block sidebar %}
+<ul>
+    <li><a href="{{ url_for('consumer_dashboard') }}">Mening talabnomalarim</a></li>
+    <li><a href="{{ url_for('request_create') }}">Yangi talabnoma</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<h1>Salom, {{ user.full_name }}!</h1>
+
+<a href="{{ url_for('request_create') }}" class="btn">Yangi талабнома юбориш</a>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Sarlavha</th>
+        <th>Holat</th>
+        <th>Sana</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for r in requests %}
+    <tr>
+        <td>{{ r.id }}</td>
+        <td>{{ r.title }}</td>
+        <td>{{ r.status }}</td>
+        <td>{{ r.created_at.strftime("%Y-%m-%d") }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
