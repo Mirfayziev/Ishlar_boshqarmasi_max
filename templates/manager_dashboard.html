@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Rahbar paneli{% endblock %}
+
+{% block sidebar %}
+<ul>
+    <li><a href="{{ url_for('manager_dashboard') }}">Dashboard</a></li>
+    <li><a href="{{ url_for('tasks_list') }}">Topshiriqlar</a></li>
+    <li><a href="{{ url_for('vehicles_list') }}">Avtotransport</a></li>
+    <li><a href="{{ url_for('contracts_list') }}">Shartnomalar</a></li>
+    <li><a href="{{ url_for('events_list') }}">Tadbirlar</a></li>
+    <li><a href="{{ url_for('outsourcings_list') }}">Outsourcing</a></li>
+    <li><a href="{{ url_for('solarpanels_list') }}">Quyosh panellari</a></li>
+    <li><a href="{{ url_for('requests_list') }}">Talabnomalar</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<h1>Rahbar paneli</h1>
+
+<div class="cards">
+    <div class="card">
+        <div class="card-title">Boshqarma topshiriqlari</div>
+        <div class="card-value">{{ total_tasks }}</div>
+        <div class="card-sub">Bajarilgan: {{ completed_tasks }} | Muddati o'tgan: {{ overdue_tasks }}</div>
+    </div>
+    <div class="card"><div class="card-title">Avtotransport</div><div class="card-value">{{ vehicles }}</div></div>
+    <div class="card"><div class="card-title">Shartnomalar</div><div class="card-value">{{ contracts }}</div></div>
+    <div class="card"><div class="card-title">Tadbirlar</div><div class="card-value">{{ events }}</div></div>
+    <div class="card"><div class="card-title">Outsourcing</div><div class="card-value">{{ outsourcings }}</div></div>
+    <div class="card"><div class="card-title">Quyosh panellari</div><div class="card-value">{{ solar_panels }}</div></div>
+    <div class="card"><div class="card-title">Talabnomalar</div><div class="card-value">{{ requests_count }}</div></div>
+</div>
+{% endblock %}
