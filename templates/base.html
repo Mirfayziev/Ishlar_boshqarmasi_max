@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="uz">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}AI Imperiya{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="topbar">
+    <div class="logo">AI Imperiya</div>
+    <div class="topbar-right">
+        {% if session.get('role') %}
+            <span class="role-badge">{{ session.get('role')|upper }}</span>
+        {% endif %}
+        {% if session.get('user_id') %}
+            <a href="{{ url_for('logout') }}">Chiqish</a>
+        {% endif %}
+    </div>
+</div>
+
+<div class="layout">
+    <aside class="sidebar">
+        {% block sidebar %}
+        <ul>
+            <li><a href="{{ url_for('index') }}">Bosh sahifa</a></li>
+        </ul>
+        {% endblock %}
+    </aside>
+    <main class="content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="flash-container">
+              {% for category, message in messages %}
+                <div class="flash flash-{{ category }}">{{ message }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+</div>
+</body>
+</html>
