@@ -1,0 +1,1 @@
+# Ishlar_boshqarmasi_max
