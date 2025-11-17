@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Hodim paneli{% endblock %}
+
+{% block sidebar %}
+<ul>
+    <li><a href="{{ url_for('employee_dashboard') }}">Mening topshiriqlarim</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<h1>Salom, {{ user.full_name }}!</h1>
+<div class="cards">
+    <div class="card"><div class="card-title">Biriktirilgan topshiriqlar</div><div class="card-value">{{ total_tasks }}</div></div>
+    <div class="card"><div class="card-title">Bajarilgan</div><div class="card-value">{{ completed_tasks }}</div></div>
+    <div class="card"><div class="card-title">Muddati o'tgan</div><div class="card-value">{{ overdue_tasks }}</div></div>
+</div>
+<p>Topshiriqlar ro‘yxati “Boshqarma topshiriqlari” bo‘limida.</p>
+{% endblock %}
